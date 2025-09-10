@@ -6,6 +6,16 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
+    <ImageView
+        android:id="@+id/tv_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/outline_location_on_24"
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="@string/icon"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:ignore="MissingConstraints" />
+
     <TextView
         android:id="@+id/tv_title"
         android:layout_width="0dp"
@@ -16,7 +26,8 @@
         tools:text="Hanoi"
         android:textStyle="bold"
         android:textColor="@color/black"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="10dp"
+        app:layout_constraintStart_toEndOf="@id/tv_icon"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
 
@@ -28,9 +39,10 @@
         android:maxLines="2"
         android:ellipsize="end"
         android:layout_marginTop="6dp"
+        android:layout_marginStart="10dp"
         tools:text="123 Hanoi"
         app:layout_constraintTop_toBottomOf="@id/tv_title"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@id/tv_icon"
         app:layout_constraintEnd_toEndOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

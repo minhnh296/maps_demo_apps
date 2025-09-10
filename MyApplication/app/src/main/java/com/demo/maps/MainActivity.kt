@@ -15,7 +15,10 @@ import com.demo.maps.api.Services
 import com.demo.maps.data.Repository
 import com.demo.maps.databinding.ActivityMainBinding
 import androidx.core.net.toUri
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
 
@@ -58,9 +61,11 @@ class MainActivity : AppCompatActivity() {
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
         })
 
-        lifecycleScope.launchWhenStarted {
-            viewModel.results.collect { list ->
-                adapter.submit(list)
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.results.collect { list ->
+                    adapter.submit(list)
+                }
             }
         }
     }
